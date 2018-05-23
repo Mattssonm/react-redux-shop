@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {actionCartAdd, actionCartRemove} from '../actions/actions.js'
 
 
 
@@ -22,16 +23,28 @@ class ShopcartItem extends Component {
         <div className="priceDiv">
           {product.price}
         </div>
-        <button className="addBtn"> Add another </button>
-        <button className="removeBtn"> Remove </button>
+        <button className="addBtn"
+        onClick = {event =>
+          this.props.dispatch(actionCartAdd())} //Addbutton event
+          > Add another </button>
+        <button className="removeBtn"
+        onClick = {event =>
+          this.props.dispatch(actionCartAdd())} //removebutton event
+        > Remove </button>
       </div>
     ))
+    let totalPrice = 0;
+    this.props.products.forEach (function(product){
+      totalPrice += product.price;
+    });
     return(
       <div className="itemDiv">
           {superpowerProducts}
+          Total price: {totalPrice}
       </div>
     )
-  }
+  } //Original list mapped to html elements 
+  // end of render
 }
 
 let mapStateToProps = state => {
