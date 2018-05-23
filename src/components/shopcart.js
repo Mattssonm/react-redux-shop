@@ -7,8 +7,6 @@ class Shopcart extends Component {
     return (
       <div className="cartContainer">
         <ShopcartItem/>
-        <ShopcartItem/>
-        <ShopcartItem/>
         <button> Undo </button>
       </div>
     )

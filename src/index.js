@@ -13,21 +13,21 @@ let initialState = {
     present: [
       {
         name: "flight-wich",
-        picture: "",
+        picture: "http://www.chingssecret.com/assets/uploads/images/chings-secret-schezwan-chutney-sandwitch%2003.jpg",
         description: "Allows you to fly, really",
         price: 123,
         amount: 1,
       },
       {
         name: "cright-wich",
-        picture: "",
+        picture: "http://www.chingssecret.com/assets/uploads/images/chings-secret-schezwan-chutney-sandwitch%2003.jpg",
         description: "Allows you to cry, really",
         price: 231,
         amount: 2,
       },
       {
         name: "slight-wich",
-        picture: "",
+        picture: "http://www.chingssecret.com/assets/uploads/images/chings-secret-schezwan-chutney-sandwitch%2003.jpg",
         description: "Allows you to sly, really",
         price: 321,
         amount: 3,
