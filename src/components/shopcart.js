@@ -6,6 +6,9 @@ class Shopcart extends Component {
   render(){
     return (
       <div className="cartContainer">
+        <ShopcartItem/>
+        <ShopcartItem/>
+        <ShopcartItem/>
         <button> Undo </button>
       </div>
     )
