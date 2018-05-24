@@ -12,7 +12,8 @@ class ProductList extends Component {
                 <img src={product.picture} alt="Avatar"/>
                 <div className="main-description">{product.description}</div>
                 <div>{product.price} &#36;</div>
-                    <button>Add To Cart</button>
+                {product.amount === 0 || product.amount === '0' ? <div><br /><div>Out of Stock</div></div> : <div><button>Add To Cart</button>
+                <div>In Stock: {product.amount}</div></div> }
             </div>
             </div>
         </div>
@@ -29,7 +30,7 @@ class ProductList extends Component {
   
   let mapStateToProps = state => {
     return {
-      products: state.products.present,
+      products: state.products,
     }
   }
 

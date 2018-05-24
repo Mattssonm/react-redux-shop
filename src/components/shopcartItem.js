@@ -49,7 +49,7 @@ class ShopcartItem extends Component {
 
 let mapStateToProps = state => {
   return {
-    products: state.products.present,
+    products: state.products,
   }
 }
 
