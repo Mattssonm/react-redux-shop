@@ -31,7 +31,11 @@ let initialState = {
      amount: 3,
    },
  ], //end of products
- cartList: [  ],
+ cartList: {
+   past: [],
+   present: [],
+   future: [],
+ },
  historyList: [  ],
  compVisible : {
    cartHeight: 0,
@@ -40,7 +44,7 @@ let initialState = {
  }
 }
 
-const store = createStore(rootReducer, initialState);
+const store = createStore(rootReducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 console.log(store.getState())
 ReactDOM.render(
   <Provider store={store}>

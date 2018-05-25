@@ -7,8 +7,21 @@ let cartReducer = (state={}, action) => {
       return {}
     case CART_REMOVE:
       return {}
-    case SHOP_ADDTOCART:
-      return{}
+    case SHOP_ADDTOCART: //returns the entire previous state and adds the new object
+      return { ...state, cartList : {
+        past: [...state.cartList.past],
+        present: [
+          ...state.cartList.present,
+          {
+            name: action.target.name,
+            picture: action.target.picture,
+            description: action.target.description,
+            price: Number(action.target.price),
+            amount: Number(action.target.amount),
+          }
+        ],
+        future: [...state.cartList.future],
+      } }
     default:
       return {...state}
   }

@@ -6,7 +6,7 @@ import {actionShopAddtocart} from '../../actions/actions.js'
 class ProductList extends Component {
 
   handleAddClick = event => {
-    this.props.dispatch(actionShopAddtocart());
+    this.props.dispatch(actionShopAddtocart(event.target.dataset));
   }
 
     showAllItems = this.props.products.map(product => (
@@ -17,13 +17,13 @@ class ProductList extends Component {
                 <img src={product.picture} alt="Avatar"/>
                 <div className="main-description">{product.description}</div>
                 <div>{product.price} &#36;</div>
-                    <button onClick={event => {
-                      {this.handleAddClick()}
+                    <button data-name={product.name} data-description={product.description} data-picture={product.picture} data-amount={product.amount} data-price={product.price} onClick={event => {
+                      {this.handleAddClick(event)}
                     }}>Add To Cart</button>
             </div>
             </div>
         </div>
-      ))
+      )) // Dataset contains all element unformation required in the button. (Figure out a diffrenet solution?)
 
     render() {
       return (

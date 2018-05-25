@@ -5,9 +5,10 @@ let actionCartRemove = () => {
     type: CART_REMOVE
   };
 }
-let actionCartAdd = () => {
+let actionCartAdd = (event) => {
   return {
-    type: CART_ADD
+    type: CART_ADD,
+    target: event.target,
   };
 }
 let actionCartUndo = () => {
@@ -15,9 +16,10 @@ let actionCartUndo = () => {
     type: CART_UNDO
   };
 }
-let actionShopAddtocart = () => {
+let actionShopAddtocart = (target) => {
   return {
-    type: SHOP_ADDTOCART
+    type: SHOP_ADDTOCART,
+    target: target,
   };
 }
 let actionAdminAddnew = () => {
