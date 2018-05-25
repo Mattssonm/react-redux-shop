@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as AdminActionCreators from '../actions/admin.js'
 import AnimateHeight from 'react-animate-height';
 import '../css/admin.css';
 
@@ -14,7 +17,14 @@ class Admin extends Component {
     });
   };
 
+  componentDidMount() {
+    console.log(this.props.products)
+  }
+
   render() {
+    const { dispatch, products } = this.props;
+    const addProduct = bindActionCreators(AdminActionCreators.addProduct, dispatch);
+
     return (
       <div>
         <AnimateHeight
@@ -27,32 +37,26 @@ class Admin extends Component {
             <table>
               <thead>
                 <tr>
-                  <th>Id</th>
                   <th>Name</th>
-                  <th>Description</th>
-                  <th>Superpower</th>
                   <th>Picture</th>
+                  <th>Description</th>
                   <th>Price</th>
                   <th>Amount</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>#1</td>
                   <td>Bacon Sandwhich</td>
-                  <td>This bacon sandwhich doesn't only taste amazing it also will make you strong like an ox!</td>
-                  <td>Supers Strength</td>
                   <td>http:url</td>
+                  <td>This bacon sandwhich doesn't only taste amazing it also will make you strong like an ox!</td>
                   <td>100$</td>
                   <td>42</td>
                   <td className="removeBtn btn">Remove</td>
                 </tr>
                 <tr>
-                  <td>#2</td>
                   <td>Cheese Sandwhich</td>
-                  <td>This cheese sandwhich doesn't only taste amazing it also will render you invisible!</td>
-                  <td>Invisibility</td>
                   <td>http:url</td>
+                  <td>This cheese sandwhich doesn't only taste amazing it also will render you invisible!</td>
                   <td>75$</td>
                   <td>37</td>
                   <td className="removeBtn btn">Remove</td>
@@ -62,9 +66,8 @@ class Admin extends Component {
 
             <h3>Create Product</h3>
             <input type="text" placeholder="Name" />
-            <input type="text" placeholder="Description" />
-            <input type="text" placeholder="Superpower" />
             <input type="text" placeholder="Picture" />
+            <input type="text" placeholder="Description" />
             <input type="number" placeholder="Price" />
             <input type="number" placeholder="Amount" />
             <input className="btn" type="submit" value="Add Product"/>
@@ -79,4 +82,10 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+const mapStateToProps = state => {
+  return {
+    products: state.products
+  }
+};
+
+export default connect(mapStateToProps)(Admin) ;
