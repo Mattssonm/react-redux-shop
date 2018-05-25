@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as AdminActionCreators from '../actions/admin.js'
 import AnimateHeight from 'react-animate-height';
 import '../css/admin.css';
 
@@ -14,7 +17,14 @@ class Admin extends Component {
     });
   };
 
+  componentDidMount() {
+    console.log(this.props.products)
+  }
+
   render() {
+    const { dispatch, products } = this.props;
+    const addProduct = bindActionCreators(AdminActionCreators.addProduct, dispatch);
+
     return (
       <div>
         <AnimateHeight
@@ -72,4 +82,10 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+const mapStateToProps = state => {
+  return {
+    products: state.products
+  }
+};
+
+export default connect(mapStateToProps)(Admin) ;

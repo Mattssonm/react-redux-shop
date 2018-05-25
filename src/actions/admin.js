@@ -1,4 +1,4 @@
-import * AdminActionTypes from '../actiontypes/admin.js';
+import * as AdminActionTypes from '../actiontypes/admin.js';
 
 export const addProduct = (name, picture, description, price, amount) => {
     return {
