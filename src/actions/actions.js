@@ -1,14 +1,15 @@
 import {CART_REMOVE, CART_ADD, CART_UNDO, SHOP_ADDTOCART, ADMIN_ADDNEW, ADMIN_EDITPRODUCT, ADMIN_REMOVEPRODUCT} from './actionConstants.js';
 
-let actionCartRemove = () => {
+let actionCartRemove = (target) => {
   return {
-    type: CART_REMOVE
+    type: CART_REMOVE,
+    target: target,
   };
 }
-let actionCartAdd = (event) => {
+let actionCartAdd = (target) => {
   return {
     type: CART_ADD,
-    target: event.target,
+    target: target,
   };
 }
 let actionCartUndo = () => {
