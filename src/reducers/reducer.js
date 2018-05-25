@@ -1,4 +1,4 @@
-import {CART_ADD, CART_REMOVE, SHOP_ADDTOCART} from '../actions/actionConstants.js';
+import {CART_ADD, CART_REMOVE, SHOP_ADDTOCART, CART_UNDO} from '../actions/actionConstants.js';
 import {combineReducers} from 'redux';
 
 let cartReducer = (state={}, action) => {
@@ -13,10 +13,12 @@ let cartReducer = (state={}, action) => {
           ...state
         }
       }
-      console.log(oldAmount);
       return {
         ...state, cartList : {
-        past: [...state.cartList.past, ],
+        past: [...state.cartList.past, {
+          ...state.cartList.present[action.target.index],
+          amount: oldAmount
+        }],
         present: [
           ...state.cartList.present,
         ],
@@ -34,9 +36,11 @@ let cartReducer = (state={}, action) => {
         }
       }
     case SHOP_ADDTOCART: //returns the entire previous state and adds the new object
+      const previousPresent = state.cartList.present;
+      console.log(previousPresent)
       return {
         ...state, cartList : {
-        past: [...state.cartList.past],
+        past: previousPresent,
         present: [
           ...state.cartList.present,
           {
@@ -51,6 +55,23 @@ let cartReducer = (state={}, action) => {
         future: [...state.cartList.future],
         }
       }
+    case CART_UNDO:
+    if (state.cartList.past.length <= 0){
+      return {
+        ...state
+      }
+    }
+
+    const previous = state.cartList.past.slice(0, state.cartList.past.length - 1);
+    return {
+      ...state, cartList : {
+      past: previous,
+      present: [
+        ...state.cartList.past,
+      ],
+      future: [...state.cartList.future],
+      }
+    }
     default:
       return {...state}
   }
