@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Admin from './components/Admin.js';
+import Admin from './components/Admin/Admin.js';
 import './css/app.css';
 import Shopcart from './components/shopcart.js'
 import Product from './components/Products/products.js';

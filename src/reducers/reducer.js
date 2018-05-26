@@ -1,5 +1,6 @@
 import {CART_ADD, CART_REMOVE, SHOP_ADDTOCART} from '../actions/actionConstants.js';
 import {combineReducers} from 'redux';
+import admin from './admin.js'
 
 let cartReducer = (state={}, action) => {
   switch (action.type){
@@ -27,7 +28,9 @@ let cartReducer = (state={}, action) => {
   }
 }
 
-const rootReducer = cartReducer;
-
+const rootReducer = combineReducers({
+  cartList: cartReducer,
+  products: admin,
+})
 
 export default rootReducer;
