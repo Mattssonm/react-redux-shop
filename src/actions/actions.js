@@ -1,13 +1,15 @@
 import {CART_REMOVE, CART_ADD, CART_UNDO, SHOP_ADDTOCART, ADMIN_ADDNEW, ADMIN_EDITPRODUCT, ADMIN_REMOVEPRODUCT} from './actionConstants.js';
 
-let actionCartRemove = () => {
+let actionCartRemove = (target) => {
   return {
-    type: CART_REMOVE
+    type: CART_REMOVE,
+    target: target,
   };
 }
-let actionCartAdd = () => {
+let actionCartAdd = (target) => {
   return {
-    type: CART_ADD
+    type: CART_ADD,
+    target: target,
   };
 }
 let actionCartUndo = () => {
@@ -15,9 +17,10 @@ let actionCartUndo = () => {
     type: CART_UNDO
   };
 }
-let actionShopAddtocart = () => {
+let actionShopAddtocart = (target) => {
   return {
-    type: SHOP_ADDTOCART
+    type: SHOP_ADDTOCART,
+    target: target,
   };
 }
 let actionAdminAddnew = () => {

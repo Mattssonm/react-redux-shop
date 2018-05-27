@@ -5,51 +5,48 @@ import {actionCartAdd, actionCartRemove} from '../actions/actions.js'
 
 
 class ShopcartItem extends Component {
+  handleCartRemoveClick = event => {
+    this.props.dispatch(actionCartRemove(event.target.dataset));
+  }
+ handleCartAddClick = event => {
+    this.props.dispatch(actionCartAdd(event.target.dataset));
+  }
   render(){
-    const superpowerProducts = this.props.products.map(product => (
+    let shoppingCartList = this.props.cartList.present.map(product => (
       <div key={product.name + product.description}>
-        <div className="nameDiv">
-          {product.name}
+        <div className="card">
+          <div className="card-header">{product.name}</div>
+              <div className="card-main">
+              <img src={product.picture} alt="Avatar"/>
+              <div className="main-description">{product.description}</div>
+              <div>{product.price}</div>
+              <div>{product.amount}</div>
+              <button data-index={this.props.cartList.present.indexOf(product)} onClick={event => {
+                this.handleCartAddClick(event)
+              }}> Add another </button>
+              <button data-index={this.props.cartList.present.indexOf(product)} onClick={event => {
+                this.handleCartRemoveClick(event)
+              }}> Remove </button>
+          </div>
         </div>
-        <div className="imgDiv">
-          <img src={product.picture} alt="Image here"/>
-        </div>
-        <div className="descriptionDiv">
-          {product.description}
-        </div>
-        <div className="amountDiv">
-          {product.amount}
-        </div>
-        <div className="priceDiv">
-          {product.price}
-        </div>
-        <button className="addBtn"
-        onClick = {event =>
-          this.props.dispatch(actionCartAdd())} //Addbutton event
-          > Add another </button>
-        <button className="removeBtn"
-        onClick = {event =>
-          this.props.dispatch(actionCartAdd())} //removebutton event
-        > Remove </button>
       </div>
     ))
-    let totalPrice = 0;
-    this.props.products.forEach (function(product){
-      totalPrice += product.price;
-    });
+    let totalCartPrice = 0;
+    this.props.cartList.present.forEach(function(product) {
+      totalCartPrice += product.price * product.amount;
+    }) //loops through and adds all prices together
     return(
       <div className="itemDiv">
-          {superpowerProducts}
-          Total price: {totalPrice}
+          {shoppingCartList}
+          Total price: {totalCartPrice}
       </div>
     )
-  } //Original list mapped to html elements 
-  // end of render
+  } //Original list mapped to html elements // end of render
 }
 
 let mapStateToProps = state => {
   return {
-    products: state.products,
+    ...state
   }
 }
 
