@@ -3,39 +3,43 @@ import {combineReducers} from 'redux';
 import admin from './admin.js'
 
 let cartReducer = (state={}, action) => {
+  console.log(state.past, state.present, state);
   switch (action.type){
     case CART_ADD:
       const oldAmount = state.present[action.target.index].amount;
+      let newAmount=oldAmount;
       if(state.present[action.target.index].amount < state.present[action.target.index].maxAmount){
-        state.present[action.target.index].amount += 1
+        newAmount++;
       }
       else {
-        return {
-          ...state
-        }
+        return state;
       }
       return {
-        past: [...state.past, {
-          ...state.present[action.target.index],
-          amount: oldAmount
-        }],
-        present: [
-          ...state.present,
-        ],
+        past: [...state.past, state.present],
+        present: state.present.map( product => {
+          if(product === state.present[action.target.index]){
+            return {
+              ...product,
+              amount: newAmount
+            }
+          }
+          return product;
+        }),
         future: [...state.future],
       }
     case CART_REMOVE:
+      const cutItem = state.present[action.target.index];
       return {
-        past: [...state.past, state.present.splice(action.target.index, 1)],
+        past: [...state.past, state.present],
         present: [
-          ...state.present,
+          ...state.present.filter(product => product !== cutItem)
         ],
         future: [...state.future],
       }
     case SHOP_ADDTOCART: //returns the entire previous state and adds the new object
       const previousPresent = state.present;
       return {
-        past: previousPresent,
+        past: [...state.past, state.present],
         present: [
           ...state.present,
           {
@@ -50,18 +54,16 @@ let cartReducer = (state={}, action) => {
         future: [...state.future],
       }
     case CART_UNDO:
+    let previousState = state.past[state.past.length -1];
+    let newPast = state.past.slice(0, state.past.length -1);
     if (state.past.length <= 0){
       return {
         ...state
       }
     }
-
-    const previous = state.past.slice(0, state.past.length - 1);
     return {
-      past: previous,
-      present: [
-        ...state.past,
-      ],
+      past: newPast,
+      present: previousState,
       future: [...state.future],
     }
     default:
