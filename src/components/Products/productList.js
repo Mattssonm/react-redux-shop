@@ -17,9 +17,11 @@ class ProductList extends Component {
                 <img src={product.picture} alt="Avatar"/>
                 <div className="main-description">{product.description}</div>
                 <div>{product.price} &#36;</div>
-                    <button data-name={product.name} data-description={product.description} data-picture={product.picture} data-amount={product.amount} data-price={product.price} onClick={event => {
+                {product.amount === 0 || product.amount === '0' ? <div><br /><div>Out of Stock</div></div> : <div><button data-name={product.name} data-description={product.description} data-picture={product.picture} data-amount={product.amount} data-price={product.price} onClick={event => {
                       {this.handleAddClick(event)}
                     }}>Add To Cart</button>
+                <div>In Stock: {product.amount}</div></div> }
+                    
             </div>
             </div>
         </div>

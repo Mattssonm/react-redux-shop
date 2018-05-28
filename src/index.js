@@ -30,6 +30,41 @@ let initialState = {
      price: 321,
      amount: 3,
    },
+   {
+    name: "cringe-wich",
+    picture: "http://www.chingssecret.com/assets/uploads/images/chings-secret-schezwan-chutney-sandwitch%2003.jpg",
+    description: "Allows you to cringe, really",
+    price: 321,
+    amount: 0,
+  },
+  {
+    name: "cringe-wich",
+    picture: "http://www.chingssecret.com/assets/uploads/images/chings-secret-schezwan-chutney-sandwitch%2003.jpg",
+    description: "Allows you to cringe, really",
+    price: 321,
+    amount: 0,
+  },
+  {
+    name: "cringe-wich",
+    picture: "http://www.chingssecret.com/assets/uploads/images/chings-secret-schezwan-chutney-sandwitch%2003.jpg",
+    description: "Allows you to cringe, really",
+    price: 321,
+    amount: 0,
+  },
+  {
+    name: "cringe-wich",
+    picture: "http://www.chingssecret.com/assets/uploads/images/chings-secret-schezwan-chutney-sandwitch%2003.jpg",
+    description: "Allows you to cringe, really",
+    price: 321,
+    amount: 0,
+  },
+  {
+    name: "cringe-wich",
+    picture: "http://www.chingssecret.com/assets/uploads/images/chings-secret-schezwan-chutney-sandwitch%2003.jpg",
+    description: "Allows you to cringe, really",
+    price: 321,
+    amount: 0,
+  },
  ], //end of products
  cartList: {
    past: [],
