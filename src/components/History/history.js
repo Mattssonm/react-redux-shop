@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AnimateHeight from 'react-animate-height';
+import HistoryList from './historyList.js';
 import '../../css/history.css';
 
 
@@ -20,24 +21,25 @@ class History extends Component {
       height: this.state.height === 0 ? 'auto' : 0,
     });
   };
-
+  
   render() {
-    console.log(this.state);
+    const productList = this.props.products.map ((product, index) => {
+      return <HistoryList index={index} product={product} />;
+    });
     return (
       <div>
           
         <AnimateHeight duration={350} height={this.state.height} >
-          <div id="compDiv">
+          <div className="historyContainer">
             <h1>History Panel</h1>
-            <h3>Actions</h3>
-            <table>
+            <h3 className="actionHeadline">Actions</h3>
+            <table className="actionTable">
               <thead>
-                <tr>
-                                   
-                </tr>
+                
+                
               </thead>
               <tbody>
-                
+              {productList}
               </tbody>
             </table>
           </div>
