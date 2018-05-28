@@ -5,9 +5,9 @@ import admin from './admin.js'
 let cartReducer = (state={}, action) => {
   switch (action.type){
     case CART_ADD:
-      const oldAmount = state.cartList.present[action.target.index].amount;
-      if(state.cartList.present[action.target.index].amount < state.cartList.present[action.target.index].maxAmount){
-        state.cartList.present[action.target.index].amount += 1
+      const oldAmount = state.present[action.target.index].amount;
+      if(state.present[action.target.index].amount < state.present[action.target.index].maxAmount){
+        state.present[action.target.index].amount += 1
       }
       else {
         return {
@@ -15,35 +15,29 @@ let cartReducer = (state={}, action) => {
         }
       }
       return {
-        ...state, cartList : {
-        past: [...state.cartList.past, {
-          ...state.cartList.present[action.target.index],
+        past: [...state.past, {
+          ...state.present[action.target.index],
           amount: oldAmount
         }],
         present: [
-          ...state.cartList.present,
+          ...state.present,
         ],
-        future: [...state.cartList.future],
-        }
+        future: [...state.future],
       }
     case CART_REMOVE:
       return {
-        ...state, cartList : {
-        past: [...state.cartList.past, state.cartList.present.splice(action.target.index, 1)],
+        past: [...state.past, state.present.splice(action.target.index, 1)],
         present: [
-          ...state.cartList.present,
+          ...state.present,
         ],
-        future: [...state.cartList.future],
-        }
+        future: [...state.future],
       }
     case SHOP_ADDTOCART: //returns the entire previous state and adds the new object
-      const previousPresent = state.cartList.present;
-      console.log(previousPresent)
+      const previousPresent = state.present;
       return {
-        ...state, cartList : {
         past: previousPresent,
         present: [
-          ...state.cartList.present,
+          ...state.present,
           {
             name: action.target.name,
             picture: action.target.picture,
@@ -53,25 +47,22 @@ let cartReducer = (state={}, action) => {
             maxAmount: action.target.amount,
           }
         ],
-        future: [...state.cartList.future],
-        }
+        future: [...state.future],
       }
     case CART_UNDO:
-    if (state.cartList.past.length <= 0){
+    if (state.past.length <= 0){
       return {
         ...state
       }
     }
 
-    const previous = state.cartList.past.slice(0, state.cartList.past.length - 1);
+    const previous = state.past.slice(0, state.past.length - 1);
     return {
-      ...state, cartList : {
       past: previous,
       present: [
-        ...state.cartList.past,
+        ...state.past,
       ],
-      future: [...state.cartList.future],
-      }
+      future: [...state.future],
     }
     default:
       return {...state}
