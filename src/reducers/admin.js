@@ -15,12 +15,13 @@ export default function admin(state = {}, action) {
         }
       ];
 
-    case AdminActionTypes.REMOVE_PRODUCT:
-      console.log("Admin reducer REMOVE_PRODUCT")
-      return [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
-      ];
+      case AdminActionTypes.REMOVE_PRODUCT:
+        console.log("Admin reducer REMOVE_PRODUCT")
+        const convertedIndex = parseInt(action.index);
+        return [
+          ...state.slice(0, convertedIndex),
+          ...state.slice(convertedIndex + 1)
+        ];
 
     case AdminActionTypes.UPDATE_PRODUCT:
       console.log("Admin reducer UPDATE_PRODUCT")
