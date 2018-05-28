@@ -19,10 +19,11 @@ export const removeProduct = index => {
   }
 }
 
-export const updateProduct = () => {
+export const updateProduct = obj => {
   return {
-    type: AdminActionTypes.UPDATE_PRODUCT
-    //Add more props here
-
+    type: AdminActionTypes.UPDATE_PRODUCT,
+    index: obj.index,
+    property: obj.property,
+    value: obj.value
   }
 }
