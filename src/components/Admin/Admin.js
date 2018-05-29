@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as AdminActionCreators from '../../actions/admin.js'
 import AnimateHeight from 'react-animate-height';
@@ -16,8 +15,10 @@ class Admin extends Component {
     picture: "",
     description: "",
     price: 0,
-    amount: 0
-
+    amount: 0,
+    updateId: 0,
+    updateProp: "name",
+    updateValue: ""
   };
 
   handleAddClick = event => {
@@ -43,6 +44,20 @@ class Admin extends Component {
     this.props.dispatch(actionHistoryAdd(AdminActionCreators.removeProduct(event.target.dataset.id).type));
   }
 
+  handleUpdateClick = event => {
+    this.props.dispatch(AdminActionCreators.updateProduct({
+      index: this.state.updateId,
+      property: this.state.updateProp,
+      value: this.state.updateValue
+    }));
+  }
+
+  handleSelect = event => {
+    this.setState({
+      [event.target.name]: event.target.selectedOptions[0].value
+    })
+  }
+
   handleChangeForm = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -56,17 +71,49 @@ class Admin extends Component {
   };
 
   render() {
+    const inputs = ["name", "picture", "description", "price", "amount"];
 
     const productList = this.props.products.map ((product, index) => {
-      return <AdminProductList index={index} product={product} handleRemoveClick={this.handleRemoveClick} />;
+      return (
+        <AdminProductList
+          key={"ProductList" + index + product.name}
+          index={index}
+          product={product}
+          handleRemoveClick={this.handleRemoveClick}
+        />
+      )
     });
 
-    const inputs = ["name", "picture", "description", "price", "amount"];
     const inputList = inputs.map((input, index) => {
-      return <AdminInput
+      return (
+        <AdminInput
+          key={"AdminInput" + index + input}
           inputName={input}
           handleChangeForm={this.handleChangeForm}
         />
+      )
+    });
+
+    //Create the idSelect by mapping products
+    const idSelect = this.props.products.map((product, index) => {
+      return (
+        <option
+          key={"idSelect" + index + product.name}
+          value={index}>
+          {index}
+        </option>
+      )
+    })
+
+    //Create the propSelect by mapping inputs
+    const propSelect = inputs.map((option, index) => {
+      return (
+        <option
+          key={"propSelect" + index + option}
+          value={option}>
+          {option}
+        </option>
+      )
     })
 
     return (
@@ -74,10 +121,12 @@ class Admin extends Component {
         <AnimateHeight duration={350} height={this.state.height} >
           <div id="compDiv">
             <h1>Admin Panel</h1>
+
             <h3>Products</h3>
             <table>
               <thead>
                 <tr>
+                  <th>#</th>
                   <th>Name</th>
                   <th>Picture</th>
                   <th>Description</th>
@@ -92,7 +141,36 @@ class Admin extends Component {
 
             <h3>Create Product</h3>
             {inputList}
-            <input className="btn" type="submit" value="Add Product" onClick={this.handleAddClick} />
+            <input
+              className="btn"
+              type="submit"
+              value="Add Product"
+              onClick={this.handleAddClick}
+            />
+
+            <h3>Update Product</h3>
+            <select
+              onChange={this.handleSelect}
+              name="updateId">
+              {idSelect}
+            </select>
+            <select
+              onChange={this.handleSelect}
+              name="updateProp">
+              {propSelect}
+            </select>
+            <input
+              onChange={this.handleChangeForm}
+              name="updateValue"
+              placeholder="New Value"
+            />
+            <input
+              className="btn"
+              type="submit"
+              value="Update Product"
+              onClick={this.handleUpdateClick}
+            />
+
           </div>
         </AnimateHeight>
         <button className="panelToggle btn" onClick={ this.togglePanel }>
