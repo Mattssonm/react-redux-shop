@@ -24,6 +24,9 @@ h1 {
 }
 
 tr td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   background-color: white;
   color: black;
   padding: 5px;
