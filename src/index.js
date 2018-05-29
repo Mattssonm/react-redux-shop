@@ -73,7 +73,6 @@ let initialState = {
  },
  historyList: [  ],
  compVisible : {
-   cartHeight: 0,
    historyHeight: 0,
    adminHeight: 0,
  }
