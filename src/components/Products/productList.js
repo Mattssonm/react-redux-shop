@@ -26,7 +26,8 @@ class ProductList extends Component {
                     :
                     <div>
                       <button data-name={product.name} data-description={product.description} data-picture={product.picture} data-amount={product.amount} data-price={product.price} onClick={event => {
-                      {this.handleAddClick(event)}}}>Add To Cart</button>
+                      this.props.dispatch(actionShopAddtocart(event.target.dataset));
+                      this.props.dispatch(actionHistoryAdd(actionShopAddtocart(event.target.dataset).type));}}>Add To Cart</button>
                       <div>In Stock: {product.amount}</div>
                     </div>
                   }

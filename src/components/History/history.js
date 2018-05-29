@@ -3,17 +3,10 @@ import { connect } from 'react-redux';
 import AnimateHeight from 'react-animate-height';
 import * as AnimateHeightCreators from '../../actions/animateHeight.js'
 import '../../css/history.css';
+import {actionHistoryAdd} from '../../actions/actions.js';
 
 
 class History extends Component {
-  state = {
-    name: "",
-    picture: "",
-    description: "",
-    price: 0,
-    amount: 0
-
-  };
 
   togglePanel = () => {
     //if height is 0 dispatch 'auto'
@@ -22,12 +15,20 @@ class History extends Component {
         property: "historyHeight",
         value: 'auto'
       }));
+      this.props.dispatch(actionHistoryAdd(AnimateHeightCreators.setHeight({
+        property: "adminHeight",
+        value: 'auto'
+      }).type));
       // else dispatch 0
     } else {
       this.props.dispatch(AnimateHeightCreators.setHeight({
         property: "historyHeight",
         value: 0
       }));
+      this.props.dispatch(actionHistoryAdd(AnimateHeightCreators.setHeight({
+        property: "adminHeight",
+        value: 0
+      }).type));
     }
   };
 
@@ -38,15 +39,13 @@ class History extends Component {
           <div id="compDiv">
             <h1>History Panel</h1>
             <h3 className="actionHeadline">Actions</h3>
-            <table className="actionTable">
-              <thead>
-              </thead>
-              <tbody>
-              {this.props.history === undefined ? <p> No Action Made </p> : this.props.history.map((product, index) => {
-                return <tr key={index}>{product}</tr>
+            <div className="actionTable">
+              <ol>
+              {this.props.history === undefined ? <p>No Action Made</p> : this.props.history.map((product, index) => {
+                return <li key={index}>{product}</li>
               })}
-              </tbody>
-            </table>
+              </ol>
+            </div>
           </div>
         </AnimateHeight>
         <button className="panelToggleHistory historyBtn" onClick={ this.togglePanel }>
@@ -60,7 +59,6 @@ class History extends Component {
 const mapStateToProps = state => {
   return {
     history: state.historyList,
-    products: state.products,
     compVisible: state.compVisible
   }
 };

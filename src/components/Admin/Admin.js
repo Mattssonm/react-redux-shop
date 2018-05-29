@@ -76,12 +76,20 @@ class Admin extends Component {
         property: "adminHeight",
         value: 'auto'
       }));
+      this.props.dispatch(actionHistoryAdd(AnimateHeightCreators.setHeight({
+        property: "adminHeight",
+        value: 'auto'
+      }).type));
       // else dispatch 0
     } else {
       this.props.dispatch(AnimateHeightCreators.setHeight({
         property: "adminHeight",
         value: 0
       }));
+      this.props.dispatch(actionHistoryAdd(AnimateHeightCreators.setHeight({
+        property: "adminHeight",
+        value: 0
+      }).type));
     }
   };
 
