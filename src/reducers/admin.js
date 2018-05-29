@@ -15,16 +15,19 @@ export default function admin(state = {}, action) {
         }
       ];
 
-    case AdminActionTypes.REMOVE_PRODUCT:
-    console.log("Admin reducer REMOVE_PRODUCT")
-      return [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
-      ];
+      case AdminActionTypes.REMOVE_PRODUCT:
+        console.log("Admin reducer REMOVE_PRODUCT")
+        const convertedIndex = parseInt(action.index);
+        return [
+          ...state.slice(0, convertedIndex),
+          ...state.slice(convertedIndex + 1)
+        ];
 
     case AdminActionTypes.UPDATE_PRODUCT:
-    console.log("Admin reducer UPDATE_PRODUCT")
-      return state.map( product => product === action.oldItem ? action.newItem : product );
+      console.log("Admin reducer UPDATE_PRODUCT")
+      const newState = [...state]; //clone the array
+      newState[action.index][action.property] = action.value;
+      return newState;
 
     default:
       return state;

@@ -7,7 +7,6 @@ const AdminInput = props => {
         type="text"
         placeholder={props.inputName}
         name={props.inputName}
-        
         onChange={props.handleChangeForm}
       />
     </React.Fragment>

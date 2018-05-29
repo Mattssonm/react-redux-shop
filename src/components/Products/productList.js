@@ -9,8 +9,8 @@ class ProductList extends Component {
     this.props.dispatch(actionShopAddtocart(event.target.dataset));
   }
 
-    showAllItems = this.props.products.map(product => (
-        <div key={product.name + product.description}>
+    showAllItems = this.props.products.map((product, index )=> (
+        <div key={index + product.name + product.description}>
           <div className="card">
             <div className="card-header">{product.name}</div>
                 <div className="card-main">
