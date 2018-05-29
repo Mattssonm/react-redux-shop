@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AnimateHeight from 'react-animate-height';
-import HistoryList from './historyList.js';
 import * as AnimateHeightCreators from '../../actions/animateHeight.js'
 import '../../css/history.css';
 
@@ -31,15 +30,7 @@ class History extends Component {
       }));
     }
   };
-  productList = () => {
-    if(this.props.history === undefined){
-      return <p> No Actions Made </p>
-    } else {
-    this.props.history.map ((product, index) => {
-    return <tr key={index}>{product} </tr>
-  });
-}
-}
+
   render() {
     return (
       <div>
