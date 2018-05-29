@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../../css/product.css'
 import {actionShopAddtocart} from '../../actions/actions.js'
+import {actionHistoryAdd} from '../../actions/actions.js';
 
 class ProductList extends Component {
 
   handleAddClick = event => {
     this.props.dispatch(actionShopAddtocart(event.target.dataset));
+    this.props.dispatch(actionHistoryAdd(actionShopAddtocart(event.target.dataset).type));
   }
 
     showAllItems = this.props.products.map((product, index )=> (

@@ -1,6 +1,8 @@
 import {CART_ADD, CART_REMOVE, SHOP_ADDTOCART, CART_UNDO} from '../actions/actionConstants.js';
 import {combineReducers} from 'redux';
 import admin from './admin.js'
+import animateHeight from './animateHeight.js'
+
 
 let cartReducer = (state={}, action) => {
   console.log(state.past, state.present, state);
@@ -70,10 +72,21 @@ let cartReducer = (state={}, action) => {
       return {...state}
   }
 }
+let historyReducer = (state=[], action) => {
+  switch( action.type ) {
+    case 'HISTORY_ADD':
+          return [...state, action.item];
+    default:
+      return state;
+  }
+  console.log('added history')
+}
 
 const rootReducer = combineReducers({
   cartList: cartReducer,
   products: admin,
+  historyList: historyReducer,
+  compVisible: animateHeight
 })
 
 export default rootReducer;

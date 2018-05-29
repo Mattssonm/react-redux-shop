@@ -1,20 +1,49 @@
+* {
+
+}
+
 div > div > div {
   margin: 2px;
 }
+
 .itemDiv {
   display: flex;
   flex-direction: row;
   margin: 4px;
   font-size: 0.7em;
-
 }
+
+.cartTitle {
+  position: absolute;
+  left: 50px;
+  top: 0;
+}
+
 .cartContainer {
+  text-align: center;
+  margin-top: 0;
+  overflow: scroll;
+  border-right: 3px solid lightgray;
+  height: 100%;
+  width: 230px;
   position: fixed;
   left: 0px;
-  height: 70%;
   display: flex;
   flex-direction: column;
 }
+
+.cartContainer h3 {
+  color: #d32f2f;
+}
+
+.cartContainer button {
+  margin: 0 auto;
+  padding: 3px;
+  color: green;
+  max-width: 100px;
+}
+
+
 img {
   width: 50px;
   height: 50px;
