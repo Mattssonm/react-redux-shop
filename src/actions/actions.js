@@ -1,4 +1,4 @@
-import {CART_REMOVE, CART_ADD, CART_UNDO, SHOP_ADDTOCART, ADMIN_ADDNEW, ADMIN_EDITPRODUCT, ADMIN_REMOVEPRODUCT} from './actionConstants.js';
+import {CART_REMOVE, CART_ADD, CART_UNDO, SHOP_ADDTOCART, ADMIN_ADDNEW, ADMIN_EDITPRODUCT, ADMIN_REMOVEPRODUCT, HISTORY_ADD} from './actionConstants.js';
 
 let actionCartRemove = (target) => {
   return {
@@ -38,5 +38,11 @@ let actionAdminRemoveproduct = () => {
     type: ADMIN_REMOVEPRODUCT
   };
 }
+let actionHistoryAdd = item =>{
+  return{
+    type: HISTORY_ADD,
+    item: item
+  }
+}
 
-export {actionCartRemove, actionCartAdd, actionCartUndo, actionShopAddtocart, actionAdminAddnew, actionAdminEditproduct, actionAdminRemoveproduct}
+export {actionCartRemove, actionCartAdd, actionCartUndo, actionShopAddtocart, actionAdminAddnew, actionAdminEditproduct, actionAdminRemoveproduct, actionHistoryAdd}

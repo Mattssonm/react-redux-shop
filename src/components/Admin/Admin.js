@@ -6,6 +6,7 @@ import AnimateHeight from 'react-animate-height';
 import AdminProductList from './AdminProductList.js';
 import AdminInput from './AdminInput.js'
 import '../../css/admin.css';
+import {actionHistoryAdd} from '../../actions/actions.js';
 
 
 class Admin extends Component {
@@ -27,10 +28,19 @@ class Admin extends Component {
       price: this.state.price,
       amount: this.state.amount
     }));
+    this.props.dispatch(actionHistoryAdd(AdminActionCreators.addProduct({
+      name: this.state.name,
+      picture: this.state.picture,
+      description: this.state.description,
+      price: this.state.price,
+      amount: this.state.amount
+    }).type));
+    
   }
 
   handleRemoveClick = event => {
     this.props.dispatch(AdminActionCreators.removeProduct(event.target.dataset.id))
+    this.props.dispatch(actionHistoryAdd(AdminActionCreators.removeProduct(event.target.dataset.id).type));
   }
 
   handleChangeForm = event => {

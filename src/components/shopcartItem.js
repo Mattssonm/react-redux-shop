@@ -1,15 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {actionCartAdd, actionCartRemove} from '../actions/actions.js'
+import {actionCartAdd, actionCartRemove} from '../actions/actions.js';
+import {actionHistoryAdd} from '../actions/actions.js';
+
 
 
 
 class ShopcartItem extends Component {
   handleCartRemoveClick = event => {
     this.props.dispatch(actionCartRemove(event.target.dataset));
+    this.props.dispatch(actionHistoryAdd(actionCartRemove(event.target.dataset).type));
   }
  handleCartAddClick = event => {
     this.props.dispatch(actionCartAdd(event.target.dataset));
+    this.props.dispatch(actionHistoryAdd(actionCartAdd(event.target.dataset).type));
   }
   render(){
     let shoppingCartList = this.props.cartList.present.map(product => (

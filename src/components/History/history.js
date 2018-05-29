@@ -21,11 +21,17 @@ class History extends Component {
       height: this.state.height === 0 ? 'auto' : 0,
     });
   };
-  
+  productList = () => {
+    if(this.props.history === undefined){
+      return <p> No Actions Made </p>
+    } else {
+    this.props.history.map ((product, index) => {
+    return <tr key={index}>{product} </tr>
+  });
+}
+}
   render() {
-    const productList = this.props.products.map ((product, index) => {
-      return <HistoryList index={index} product={product} />;
-    });
+    
     return (
       <div>
           
@@ -39,7 +45,9 @@ class History extends Component {
                 
               </thead>
               <tbody>
-              {productList}
+              {this.props.history === undefined ? <p> No Action Made </p> : this.props.history.map((product, index) => {
+                return <tr key={index}>{product}</tr>
+              })}
               </tbody>
             </table>
           </div>
@@ -54,7 +62,7 @@ class History extends Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products
+    history: state.historyList
   }
 };
 
