@@ -71,7 +71,7 @@ let initialState = {
    present: [],
    future: [],
  },
- historyList: [  ],
+ historyList: [],
  compVisible : {
    cartHeight: 0,
    historyHeight: 0,

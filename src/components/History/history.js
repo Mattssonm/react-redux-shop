@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AnimateHeight from 'react-animate-height';
+import HistoryList from './historyList.js';
 import '../../css/history.css';
 
 
@@ -20,24 +21,33 @@ class History extends Component {
       height: this.state.height === 0 ? 'auto' : 0,
     });
   };
-
+  productList = () => {
+    if(this.props.history === undefined){
+      return <p> No Actions Made </p>
+    } else {
+    this.props.history.map ((product, index) => {
+    return <tr key={index}>{product} </tr>
+  });
+}
+}
   render() {
-    console.log(this.state);
+    
     return (
       <div>
           
         <AnimateHeight duration={350} height={this.state.height} >
-          <div id="compDiv">
+          <div className="historyContainer">
             <h1>History Panel</h1>
-            <h3>Actions</h3>
-            <table>
+            <h3 className="actionHeadline">Actions</h3>
+            <table className="actionTable">
               <thead>
-                <tr>
-                                   
-                </tr>
+                
+                
               </thead>
               <tbody>
-                
+              {this.props.history === undefined ? <p> No Action Made </p> : this.props.history.map((product, index) => {
+                return <tr key={index}>{product}</tr>
+              })}
               </tbody>
             </table>
           </div>
@@ -52,7 +62,7 @@ class History extends Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products
+    history: state.historyList
   }
 };
 

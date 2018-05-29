@@ -70,10 +70,20 @@ let cartReducer = (state={}, action) => {
       return {...state}
   }
 }
+let historyReducer = (state=[], action) => {
+  switch( action.type ) {
+    case 'HISTORY_ADD':
+          return [...state, action.item];
+    default:
+      return state;
+  }
+  console.log('added history')
+}
 
 const rootReducer = combineReducers({
   cartList: cartReducer,
   products: admin,
+  historyList: historyReducer,
 })
 
 export default rootReducer;
