@@ -68,7 +68,7 @@ class History extends Component {
 
 const mapStateToProps = state => {
   return {
-    history: state.historyList
+    history: state.historyList,
     products: state.products,
     compVisible: state.compVisible
   }
