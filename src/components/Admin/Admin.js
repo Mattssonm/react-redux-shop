@@ -36,7 +36,7 @@ class Admin extends Component {
       price: this.state.price,
       amount: this.state.amount
     }).type));
-    
+
   }
 
   handleRemoveClick = event => {
@@ -198,7 +198,7 @@ class Admin extends Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products,
+    products: state.products.present,
     compVisible: state.compVisible
   }
 };
