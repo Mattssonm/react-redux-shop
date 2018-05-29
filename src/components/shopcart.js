@@ -13,10 +13,13 @@ class Shopcart extends Component {
   }
   render(){
     return (
-      <div className="cartContainer">
-        <ShopcartItem/>
-        <button onClick={event => { this.handleUndoClick() } }> Undo </button>
-      </div>
+      <React.Fragment>
+        <h3 className="cartTitle">Shopping Cart</h3>
+        <div className="cartContainer">
+          <ShopcartItem/>
+          <button onClick={event => { this.handleUndoClick() } }> Undo </button>
+        </div>
+      </React.Fragment>
     )
   }
 }

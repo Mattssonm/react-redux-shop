@@ -1,6 +1,8 @@
 import {CART_ADD, CART_REMOVE, SHOP_ADDTOCART, CART_UNDO} from '../actions/actionConstants.js';
 import {combineReducers} from 'redux';
 import admin from './admin.js'
+import animateHeight from './animateHeight.js'
+
 
 let cartReducer = (state={}, action) => {
   console.log(state.past, state.present, state);
@@ -84,6 +86,7 @@ const rootReducer = combineReducers({
   cartList: cartReducer,
   products: admin,
   historyList: historyReducer,
+  compVisible: animateHeight
 })
 
 export default rootReducer;
