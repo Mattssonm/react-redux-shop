@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AnimateHeight from 'react-animate-height';
+import * as AnimateHeightCreators from '../../actions/animateHeight.js'
 import '../../css/history.css';
 
 
 class History extends Component {
   state = {
-    height: 0,
     name: "",
     picture: "",
     description: "",
@@ -16,34 +16,42 @@ class History extends Component {
   };
 
   togglePanel = () => {
-    this.setState({
-      height: this.state.height === 0 ? 'auto' : 0,
-    });
+    //if height is 0 dispatch 'auto'
+    if (this.props.compVisible.historyHeight === 0) {
+      this.props.dispatch(AnimateHeightCreators.setHeight({
+        property: "historyHeight",
+        value: 'auto'
+      }));
+      // else dispatch 0
+    } else {
+      this.props.dispatch(AnimateHeightCreators.setHeight({
+        property: "historyHeight",
+        value: 0
+      }));
+    }
   };
 
   render() {
-    console.log(this.state);
     return (
       <div>
-          
-        <AnimateHeight duration={350} height={this.state.height} >
+        <AnimateHeight duration={350} height={this.props.compVisible.historyHeight} >
           <div id="compDiv">
             <h1>History Panel</h1>
             <h3>Actions</h3>
             <table>
               <thead>
                 <tr>
-                                   
+
                 </tr>
               </thead>
               <tbody>
-                
+
               </tbody>
             </table>
           </div>
         </AnimateHeight>
         <button className="panelToggleHistory historyBtn" onClick={ this.togglePanel }>
-          { this.state.height === 0 ? 'History' : 'Close' }
+          { this.props.compVisible.historyHeight === 0 ? 'History' : 'Close' }
         </button>
       </div>
     )
@@ -52,7 +60,8 @@ class History extends Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products
+    products: state.products,
+    compVisible: state.compVisible
   }
 };
 

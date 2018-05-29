@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as AdminActionCreators from '../../actions/admin.js'
+import * as AnimateHeightCreators from '../../actions/animateHeight.js'
 import AnimateHeight from 'react-animate-height';
 import AdminProductList from './AdminProductList.js';
 import AdminInput from './AdminInput.js'
@@ -9,7 +10,6 @@ import '../../css/admin.css';
 
 class Admin extends Component {
   state = {
-    height: 0,
     name: "",
     picture: "",
     description: "",
@@ -55,9 +55,19 @@ class Admin extends Component {
   }
 
   togglePanel = () => {
-    this.setState({
-      height: this.state.height === 0 ? 'auto' : 0,
-    });
+    //if height is 0 dispatch 'auto'
+    if (this.props.compVisible.adminHeight === 0) {
+      this.props.dispatch(AnimateHeightCreators.setHeight({
+        property: "adminHeight",
+        value: 'auto'
+      }));
+      // else dispatch 0
+    } else {
+      this.props.dispatch(AnimateHeightCreators.setHeight({
+        property: "adminHeight",
+        value: 0
+      }));
+    }
   };
 
   render() {
@@ -108,7 +118,7 @@ class Admin extends Component {
 
     return (
       <div>
-        <AnimateHeight duration={350} height={this.state.height} >
+        <AnimateHeight duration={350} height={this.props.compVisible.adminHeight} >
           <div id="compDiv">
             <h1>Admin Panel</h1>
 
@@ -164,7 +174,7 @@ class Admin extends Component {
           </div>
         </AnimateHeight>
         <button className="panelToggle btn" onClick={ this.togglePanel }>
-          { this.state.height === 0 ? 'Admin' : 'Close' }
+          { this.props.compVisible.adminHeight === 0 ? 'Admin' : 'Close' }
         </button>
       </div>
     )
@@ -173,7 +183,8 @@ class Admin extends Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products
+    products: state.products,
+    compVisible: state.compVisible
   }
 };
 
