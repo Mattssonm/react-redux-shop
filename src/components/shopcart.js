@@ -15,8 +15,8 @@ class Shopcart extends Component {
     return (
       <div className="cartContainer">
         <h3>Shopping Cart</h3>
-        <ShopcartItem/>
         <button onClick={event => { this.handleUndoClick() } }> Undo </button>
+        <ShopcartItem/>
       </div>
     )
   }

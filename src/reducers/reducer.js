@@ -5,7 +5,6 @@ import animateHeight from './animateHeight.js'
 
 
 let cartReducer = (state={}, action) => {
-  console.log(state.past, state.present, state);
   switch (action.type){
     case CART_ADD:
       const oldAmount = state.present[action.target.index].amount;
@@ -40,6 +39,17 @@ let cartReducer = (state={}, action) => {
       }
     case SHOP_ADDTOCART: //returns the entire previous state and adds the new object
       const previousPresent = state.present;
+      let hit = false;
+      state.present.forEach(product => {
+        if (product.name === action.target.name && product.description === action.target.description){
+          hit = true;
+        }
+      })
+      if (hit){
+        return {
+          ...state
+        }
+      }
       return {
         past: [...state.past, state.present],
         present: [
