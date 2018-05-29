@@ -17,7 +17,7 @@ export default function admin(state = {}, action) {
 
       case AdminActionTypes.REMOVE_PRODUCT:
         console.log("Admin reducer REMOVE_PRODUCT")
-        const convertedIndex = parseInt(action.index);
+        const convertedIndex = parseInt(action.index, 10);
         return [
           ...state.slice(0, convertedIndex),
           ...state.slice(convertedIndex + 1)
