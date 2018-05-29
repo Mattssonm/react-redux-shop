@@ -9,17 +9,15 @@ class Shopcart extends Component {
   handleUndoClick = event => {
     this.props.dispatch(actionCartUndo())
     this.props.dispatch(actionHistoryAdd(actionCartUndo().type))
-    
+
   }
   render(){
     return (
-      <React.Fragment>
-        <h3 className="cartTitle">Shopping Cart</h3>
-        <div className="cartContainer">
-          <ShopcartItem/>
-          <button onClick={event => { this.handleUndoClick() } }> Undo </button>
-        </div>
-      </React.Fragment>
+      <div className="cartContainer">
+        <h3>Shopping Cart</h3>
+        <ShopcartItem/>
+        <button onClick={event => { this.handleUndoClick() } }> Undo </button>
+      </div>
     )
   }
 }
