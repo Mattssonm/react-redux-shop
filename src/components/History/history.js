@@ -41,39 +41,19 @@ class History extends Component {
 }
 }
   render() {
-<<<<<<< HEAD
-
-    return (
-      <div>
-
-        <AnimateHeight duration={350} height={this.state.height} >
-          <div className="historyContainer">
-=======
     return (
       <div>
         <AnimateHeight duration={350} height={this.props.compVisible.historyHeight} >
           <div id="compDiv">
->>>>>>> markus
             <h1>History Panel</h1>
             <h3 className="actionHeadline">Actions</h3>
             <table className="actionTable">
               <thead>
-<<<<<<< HEAD
-
-
               </thead>
               <tbody>
               {this.props.history === undefined ? <p> No Action Made </p> : this.props.history.map((product, index) => {
                 return <tr key={index}>{product}</tr>
               })}
-=======
-                <tr>
-
-                </tr>
-              </thead>
-              <tbody>
-
->>>>>>> markus
               </tbody>
             </table>
           </div>
@@ -88,12 +68,9 @@ class History extends Component {
 
 const mapStateToProps = state => {
   return {
-<<<<<<< HEAD
     history: state.historyList
-=======
     products: state.products,
     compVisible: state.compVisible
->>>>>>> markus
   }
 };
 
