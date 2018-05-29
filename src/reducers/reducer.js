@@ -38,7 +38,6 @@ let cartReducer = (state={}, action) => {
         future: [...state.future],
       }
     case SHOP_ADDTOCART: //returns the entire previous state and adds the new object
-      const previousPresent = state.present;
       let hit = false;
       state.present.forEach(product => {
         if (product.name === action.target.name && product.description === action.target.description){
@@ -89,7 +88,6 @@ let historyReducer = (state=[], action) => {
     default:
       return state;
   }
-  console.log('added history')
 }
 
 const rootReducer = combineReducers({
