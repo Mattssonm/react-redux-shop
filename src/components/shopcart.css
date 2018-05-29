@@ -1,5 +1,5 @@
 * {
-  text-align: center;;
+
 }
 
 div > div > div {
@@ -20,7 +20,10 @@ div > div > div {
 }
 
 .cartContainer {
+  text-align: center;
+  margin-top: 0;
   overflow: scroll;
+  border-right: 3px solid lightgray;
   height: 100%;
   width: 230px;
   position: fixed;
@@ -28,6 +31,18 @@ div > div > div {
   display: flex;
   flex-direction: column;
 }
+
+.cartContainer h3 {
+  color: #d32f2f;
+}
+
+.cartContainer button {
+  margin: 0 auto;
+  padding: 3px;
+  color: green;
+  max-width: 100px;
+}
+
 
 img {
   width: 50px;

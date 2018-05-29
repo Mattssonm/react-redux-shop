@@ -11,9 +11,11 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Admin />
-        <History />
-        <h1>Superpower Sandwhiches!</h1>
+        <div className="navigation">
+          <Admin />
+          <History />
+          <h1>Superpower Sandwhiches!</h1>
+        </div>
         <Shopcart/>
         <Product />
       </div>
