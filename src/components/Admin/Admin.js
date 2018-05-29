@@ -50,6 +50,11 @@ class Admin extends Component {
       property: this.state.updateProp,
       value: this.state.updateValue
     }));
+    this.props.dispatch(actionHistoryAdd(AdminActionCreators.updateProduct({
+      index: this.state.updateId,
+      property: this.state.updateProp,
+      value: this.state.updateValue
+    }).type));
   }
 
   handleSelect = event => {
