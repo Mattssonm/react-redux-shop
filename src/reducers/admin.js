@@ -31,16 +31,12 @@ export default function admin(state = {}, action) {
     case AdminActionTypes.UPDATE_PRODUCT:
       console.log("Admin reducer UPDATE_PRODUCT");
       console.log("The Past", [...state.past], "The Past with the latest Present", [...state.past, state.present]);
-      const newState = [...state]; //clone the array
+      const newState = JSON.parse(JSON.stringify(state.present)); //clone the array
+
       newState[action.index][action.property] = action.value;
       return {
         past: [...state.past, state.present],
-        present: [...state.present,
-          present[action.index] : {
-            ...state.present[action.index],
-              action.property: action.value
-          }
-        ]
+        present: newState
       };
 
     case AdminActionTypes.UNDO_PRODUCT:
