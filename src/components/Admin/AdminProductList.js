@@ -5,7 +5,7 @@ const AdminProductList = props => {
     <tr>
       <td>{props.index}</td>
       <td>{props.product.name}</td>
-      <td>{props.product.picture}</td>
+      <td><img src={props.product.picture} alt=""/></td>
       <td>{props.product.description}</td>
       <td>{props.product.price}</td>
       <td>{props.product.amount}</td>
