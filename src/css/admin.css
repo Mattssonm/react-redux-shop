@@ -23,20 +23,33 @@ h1 {
   font-size: 15px;
 }
 
+.undoBtn {
+  margin-top: 10px;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 tr td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   background-color: white;
   color: black;
   padding: 5px;
   max-width: 400px;
 }
 
+select {
+  margin-right: 10px;
+}
+
 input {
-  margin-right: 4px;
+  margin-right: 10px;
   border-radius: 5px;
   font-size: 0.9em;
 }
 
-input[type="submit"] {
+input[type="submit"],  {
   padding: 4px;
-
 }

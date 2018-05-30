@@ -36,7 +36,7 @@ class Admin extends Component {
       price: this.state.price,
       amount: this.state.amount
     }).type));
-    
+
   }
 
   handleRemoveClick = event => {
@@ -55,6 +55,11 @@ class Admin extends Component {
       property: this.state.updateProp,
       value: this.state.updateValue
     }).type));
+  }
+
+  handleUndoClick = event => {
+    console.log("Admin.js component, Undo click");
+    this.props.dispatch(AdminActionCreators.undoProduct());
   }
 
   handleSelect = event => {
@@ -193,10 +198,11 @@ class Admin extends Component {
               value="Update Product"
               onClick={this.handleUpdateClick}
             />
-
+          <br/>
+          <button className="btn undoBtn" onClick={this.handleUndoClick}>Undo</button>
           </div>
         </AnimateHeight>
-        <button className="panelToggle btn" onClick={ this.togglePanel }>
+        <button className="panelToggle btn" onClick={this.togglePanel}>
           { this.props.compVisible.adminHeight === 0 ? 'Admin' : 'Close' }
         </button>
       </div>
@@ -206,7 +212,7 @@ class Admin extends Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products,
+    products: state.products.present,
     compVisible: state.compVisible
   }
 };

@@ -48,7 +48,7 @@ class ProductList extends Component {
 
   let mapStateToProps = state => {
     return {
-      products: state.products,
+      products: state.products.present,
     }
   }
 
