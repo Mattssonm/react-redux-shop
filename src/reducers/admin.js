@@ -3,7 +3,7 @@ import * as AdminActionTypes from '../actiontypes/admin.js';
 export default function admin(state = {}, action) {
   switch(action.type) {
     case AdminActionTypes.ADD_PRODUCT:
-      console.log("Admin reducer ADD_PRODUCT");
+      //console.log("Admin reducer ADD_PRODUCT");
       return {
         past: [...state.past, state.present],
         present: [...state.present,
@@ -17,9 +17,9 @@ export default function admin(state = {}, action) {
       };
 
       case AdminActionTypes.REMOVE_PRODUCT:
-        console.log("Admin reducer REMOVE_PRODUCT");
-        const convertedIndex = parseInt(action.index);
-        console.log("The Past", [...state.past], "The Past with the latest Present", [...state.past, state.present]);
+        //console.log("Admin reducer REMOVE_PRODUCT");
+        const convertedIndex = parseInt(action.index, 10);
+        //console.log("The Past", [...state.past], "The Past with the latest Present", [...state.past, state.present]);
         return {
           past: [...state.past, state.present],
           present: [
@@ -47,7 +47,7 @@ export default function admin(state = {}, action) {
       };
 
     case AdminActionTypes.UNDO_PRODUCT:
-      console.log("Admin reducer UNDO_PRODUCT");
+      //console.log("Admin reducer UNDO_PRODUCT");
       let previousState = state.past[state.past.length -1];
       let newPast = state.past.slice(0, state.past.length -1);
       if (state.past.length <= 0) {

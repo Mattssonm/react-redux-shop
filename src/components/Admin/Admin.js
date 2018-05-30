@@ -58,8 +58,9 @@ class Admin extends Component {
   }
 
   handleUndoClick = event => {
-    console.log("Admin.js component, Undo click");
+    //console.log("Admin.js component, Undo click");
     this.props.dispatch(AdminActionCreators.undoProduct());
+    this.props.dispatch(actionHistoryAdd(AdminActionCreators.undoProduct().type));
   }
 
   handleSelect = event => {
