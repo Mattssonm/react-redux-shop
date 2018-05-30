@@ -11,7 +11,11 @@ class ProductList extends Component {
     this.props.dispatch(actionHistoryAdd(actionShopAddtocart(event.target.dataset).type));
   }
 
-    showAllItems = this.props.products.map((product, index )=> (
+    
+
+    render() {
+
+      const showAllItems = this.props.products.map((product, index )=> (
         <div key={index + product.name + product.description}>
           <div className="card">
             <div className="card-header">{product.name}</div>
@@ -35,11 +39,9 @@ class ProductList extends Component {
           </div>
         </div>
       )) // Dataset contains all element unformation required in the button. (Figure out a diffrenet solution?)
-
-    render() {
       return (
         <div className="product-list-container">
-            {this.showAllItems}
+            {showAllItems}
         </div>
       )
     }
