@@ -10,8 +10,8 @@ export default function admin(state = {}, action) {
           name: action.name,
           picture: action.picture,
           description: action.description,
-          price: action.price,
-          amount: action.amount
+          price: Number(action.price),
+          amount: Number(action.amount),
         }
       ];
 
