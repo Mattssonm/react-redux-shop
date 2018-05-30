@@ -29,15 +29,15 @@ export default function admin(state = {}, action) {
         };
 
     case AdminActionTypes.UPDATE_PRODUCT:
-      console.log("Admin reducer UPDATE_PRODUCT");
-      console.log("The Past", [...state.past], "The Past with the latest Present", [...state.past, state.present]);
       return {
         past: [...state.past, state.present],
-        present: state.present.map(product => product {
-          if(product === state.present[action.index]){
+        present: state.present.map(product => {
+          if (product === state.present[action.index]){
+            let newObject = {};
+            Object.assign(newObject, state.present[action.index])
+            newObject[action.property] = action.value;
             return {
-              ...product,
-              action.property: action.value,
+              ...newObject
             }
           }
           else {
