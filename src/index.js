@@ -83,7 +83,7 @@ let initialState = {
 }
 
 const store = createStore(rootReducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-console.log(store.getState())
+//console.log(store.getState())
 ReactDOM.render(
   <Provider store={store}>
     <App />
