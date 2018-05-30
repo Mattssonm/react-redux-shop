@@ -57,6 +57,11 @@ class Admin extends Component {
     }).type));
   }
 
+  handleUndoClick = event => {
+    console.log("Admin.js component, Undo click");
+    this.props.dispatch(AdminActionCreators.undoProduct());
+  }
+
   handleSelect = event => {
     this.setState({
       [event.target.name]: event.target.selectedOptions[0].value
@@ -185,10 +190,11 @@ class Admin extends Component {
               value="Update Product"
               onClick={this.handleUpdateClick}
             />
-
+          <br/>
+          <button className="btn undoBtn" onClick={this.handleUndoClick}>Undo</button>
           </div>
         </AnimateHeight>
-        <button className="panelToggle btn" onClick={ this.togglePanel }>
+        <button className="panelToggle btn" onClick={this.togglePanel}>
           { this.props.compVisible.adminHeight === 0 ? 'Admin' : 'Close' }
         </button>
       </div>

@@ -27,3 +27,9 @@ export const updateProduct = obj => {
     value: obj.value
   }
 }
+
+export const undoProduct = () => {
+  return {
+    type: AdminActionTypes.UNDO_PRODUCT
+  }
+}
